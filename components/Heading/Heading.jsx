@@ -10,4 +10,3 @@ export const Heading = ({textAlign, content, level = 2}) => {
   return tag;
   
 }
-// ${getFontSizeForHeading(fontSize)}
