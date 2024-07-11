@@ -1,7 +1,8 @@
 import Link from "next/link"
 import {FaHouseUser, FaHeart} from "react-icons/fa"
+import { ButtonLink } from "components/ButtonLink/ButtonLink"
 
-const MainMenu = ({items}) => {
+const MainMenu = ({items, callToActionLabel, callToActionDestination}) => {
     console.log("MainMenu: ", items  )
   return (
     <div className="bg-slate-800 text-white px-5 h-[64px] sticky top-0 z-20 flex">
@@ -28,6 +29,9 @@ const MainMenu = ({items}) => {
               </div>
             </div>
           ))}
+          <div className="ml-3 my-auto">
+            <ButtonLink destination={callToActionDestination} label={callToActionLabel} />
+          </div>
         </div>
     </div>
   )

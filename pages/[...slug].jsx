@@ -5,7 +5,12 @@ import { cleanAndTransformBlocks } from "utils/cleanAndTransformBlocks";
 
 export default function Page(props) {
     console.log("Page props: ", props)
-    return <div><BlockRenderer blocks={props.blocks} /></div>
+    return (
+    <div>
+      <BlockRenderer blocks={props.blocks} />
+      <div>{props.title}</div>
+    </div>
+    )
 }
 export const getStaticProps = async (context) => {
   console.log("CONTEXT: ", context)
