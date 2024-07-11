@@ -5,14 +5,15 @@ import { gql } from "@apollo/client"
 
 export const getPageStaticProps = async (context) => {
     console.log("CONTEXT: ", context)
-    const {data} = await client.query({
+    const uri = context.params?.slug ?  `/${context.params.slug.join("/")}/` : "/";
+    const { data } = await client.query({
       query: gql`
-      query NewQuery {
-        nodeByUri(uri: "/") {
-          ... on Page {
-            id
-            blocks(postTemplate: false)
-          }
+        query PageQuery($uri: String!) {
+            nodeByUri(uri: $uri) { 
+            ... on Page {
+                id
+                blocks(postTemplate: false)
+            }
         }
         acfOptionsMainMenu {
           mainMenu {
@@ -45,8 +46,11 @@ export const getPageStaticProps = async (context) => {
           }
         }
       }
-      `
-    }) 
+      `,
+      variables: {
+        uri,
+      },
+    });
     return {
       props: {
         mainMenuItems: mapMainMenuItems(data.acfOptionsMainMenu.mainMenu.menuItems),
