@@ -8,7 +8,6 @@ export const getPageStaticProps = async (context) => {
     console.log("slug: ", context.params?.slug);
     console.log("SLUG JOINED: ",  context.params?.slug.join("/"));
     const uri = context.params?.slug ?  `/${context.params.slug.join("/")}/` : "/";
-
     console.log("uri: ",uri);
     const { data } = await client.query({
       query: gql`
